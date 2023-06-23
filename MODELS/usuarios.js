@@ -13,6 +13,13 @@ const usuario_schema = Schema ({
     },
     nombre:{
         type: String,
+        validate:{
+            validator: value => {
+                const regExpName = /[A-Za-z\s]/
+                return regExpName.test(value)
+            },
+            message: value => `El nombre ${value} no cumple el formato`
+        },
         required: [true, 'El nombre es obligatorio']
     }, 
     apellido:{
